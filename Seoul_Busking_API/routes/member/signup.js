@@ -7,10 +7,12 @@
 		member_type : int ,				/	일반인 : 1 , 공연자 : 2
 		member_category : String ,		/	공연 카테고리 종류 , 일반인 경우에는 null
 		member_ID : String , 			/	아이디
-		member_password : String ,		/	비밀번호
+		member_PW : String ,			/	비밀번호
 		member_nickname : String ,		/	닉네임
 		member_profile : file  			/	디폴트 프로필 사진 
 	}
+
+	중복검사가 모두 완료되었을경우에만 진행 안그럴 경우 id PK 로 인해서 오류 발생
 */
 
 const express = require('express');
@@ -43,7 +45,7 @@ router.post('/', upload.single('member_profile'), function(req, res) {
 	let member_type = req.body.member_type ;
 	let member_category = req.body.member_category ;
 	let member_ID = req.body.member_ID ;
-	let member_password = req.body.member_password ;
+	let member_PW = req.body.member_PW ;
 	let member_nickname = req.body.member_nickname ;
 	let member_profile = req.file.location  ;
 
@@ -63,34 +65,6 @@ router.post('/', upload.single('member_profile'), function(req, res) {
 			});
 		} ,
 
-		function( connection , callback ) {
-
-			let checkDuplicationIDQuery = 'SELECT * FROM Member WHERE member_ID = ?' ;
-
-			connection.query( checkDuplicationIDQuery , member_ID , function( err , result ) {
-				if(err) {
-					res.status(500).send({
-						status : "fail" ,
-						message : "internal server err"
-					}) ;
-					connection.release() ;
-					callback( "checkDuplicationIDQuery err" ) ;
-				} else {
-
-					if( result.length > 0 ) {
-						res.status(401).send({
-							status : "fail" ,
-							message : "already duplication ID in database"
-						}) ;
-						connection.release() ;
-						callback( "already duplication ID in database" ) ;
-					} else {
-						callback( null , connection ) ;
-					}
-				}
-			});
-		} ,
-
 		function ( connection , callback ) {
 
 			crypto.randomBytes( 32 , function ( err , buffer ) {
@@ -105,7 +79,7 @@ router.post('/', upload.single('member_profile'), function(req, res) {
 
 					let salt = buffer.toString( 'base64' ) ;
 
-					crypto.pbkdf2( member_password , salt , 100000 , 64 , 'sha512' , function( err , hashed ) {
+					crypto.pbkdf2( member_PW , salt , 100000 , 64 , 'sha512' , function( err , hashed ) {
 						if( err ) {
 							res.status(500).send({
 								status : "fail" ,

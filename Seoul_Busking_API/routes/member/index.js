@@ -5,6 +5,10 @@ var router = express.Router();
 const signup = require( './signup' ) ;
 router.use( '/signup' , signup ) ;
 
+//	중복검사
+const overlap = require( './overlap/index' ) ;
+router.use( '/overlap' , overlap ) ;
+
 // //	로그인
 // const signin = require( './signin' ) ;
 // router.use( '/signin' , signin ) ;
