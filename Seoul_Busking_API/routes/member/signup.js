@@ -26,7 +26,7 @@ const crypto = require('crypto');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
 const aws = require('aws-sdk');
-aws.config.loadFromPath('./config/aws_config.json');	//	server 에서는 2개
+aws.config.loadFromPath('../config/aws_config.json');	//	server 에서는 2개
 const s3 = new aws.S3();
 
 const upload = multer({
