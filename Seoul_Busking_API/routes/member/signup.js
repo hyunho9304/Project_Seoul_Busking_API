@@ -4,7 +4,7 @@
 	Content-type : form_data
 	method : POST - Body
 	Body = {
-		member_type : int ,				/	일반인 : 1 , 공연자 : 2
+		member_type : String ,			/	일반인 : 0 , 공연자 : 1
 		member_category : String ,		/	공연 카테고리 종류 , 일반인 경우에는 null
 		member_ID : String , 			/	아이디
 		member_PW : String ,			/	비밀번호
