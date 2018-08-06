@@ -64,6 +64,7 @@ router.post('/', function(req, res) {
             }); //  connection.query
         } //    function( nickname 중복 확인 )
     ];
+    
     async.waterfall(task, function(err, result) {
 
         let logtime = moment().format('MMMM Do YYYY, h:mm:ss a');

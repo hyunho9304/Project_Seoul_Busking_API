@@ -9,8 +9,8 @@ router.use( '/signup' , signup ) ;
 const overlap = require( './overlap/index' ) ;
 router.use( '/overlap' , overlap ) ;
 
-// //	로그인
-// const signin = require( './signin' ) ;
-// router.use( '/signin' , signin ) ;
+//	로그인
+const signin = require( './signin' ) ;
+router.use( '/signin' , signin ) ;
 
 module.exports = router;
