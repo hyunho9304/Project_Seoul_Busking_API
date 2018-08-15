@@ -86,6 +86,10 @@ router.post('/', function(req, res) {
 								} else {
 									res.status(201).send({
 										status : "success" ,
+										data : {
+											member_type : member_type ,
+											member_nickname : member_nickname
+										} ,
 										message : "successful signup"
 									});
 									connection.release() ;

@@ -90,6 +90,10 @@ router.post('/', function(req, res) {
 					} else {
 						res.status(201).send({
 							status : "success" ,
+							data : {
+								member_type : object.member_type ,
+								member_nickname : object.member_nickname
+							} ,
 							message : "successful signin"
 						}) ;
 						connection.release() ;
