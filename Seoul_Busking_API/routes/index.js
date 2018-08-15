@@ -5,12 +5,12 @@ var router = express.Router();
 const member = require( './member/index' ) ;
 router.use( '/member' , member ) ;
 
-//	달력
-const calendar = require( './calendar/index' ) ;
-router.use( '/calendar' , calendar ) ;
-
 //	새로추가
 const upload = require( './upload/index' ) ;
 router.use( '/upload' , upload ) ;
+
+//	리스트가져오기
+const collection = require( './collection/index' ) ;
+router.use( '/collection' , collection ) ;
 
 module.exports = router;

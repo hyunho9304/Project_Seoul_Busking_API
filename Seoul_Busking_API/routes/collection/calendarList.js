@@ -1,5 +1,5 @@
 /*
-	URL : /calendar/date
+	URL : /collection/calendarList
 	Description : 14일 날짜 가져오기
 	Content-type : x-www-form-urlencoded
 	method : GET
