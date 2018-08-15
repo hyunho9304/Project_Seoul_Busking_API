@@ -9,4 +9,8 @@ router.use( '/member' , member ) ;
 const calendar = require( './calendar/index' ) ;
 router.use( '/calendar' , calendar ) ;
 
+//	새로추가
+const upload = require( './upload/index' ) ;
+router.use( '/upload' , upload ) ;
+
 module.exports = router;
