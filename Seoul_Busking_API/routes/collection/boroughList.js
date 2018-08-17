@@ -1,9 +1,8 @@
 /*
-	URL : /collection/buskingZoneList
-	Description : 자치구에 따른 존 리스트
+	URL : /collection/boroughList
+	Description : 자치구 리스트
 	Content-type : x-www-form-urlencoded
 	method : GET - query
-	query = /?sb_id={ 자치구 index }
 */
 
 const express = require('express');
@@ -13,8 +12,6 @@ const async = require( 'async' ) ;		//	install
 const moment = require( 'moment' ) ;
 
 router.get( '/' , function( req , res ) {
-
-	let sb_id = req.query.sb_id ;
 
 	let task = [
 
@@ -34,16 +31,16 @@ router.get( '/' , function( req , res ) {
 
 		function( connection , callback ) {
 
-			let selectBuskingZoneListQuery = 'SELECT * FROM SeoulBuskingZone WHERE sb_id = ? ORDER BY sbz_uploadtime ASC' ;
+			let selectBoroughListQuery = 'SELECT * FROM SeoulBorough' ;
 
-			connection.query( selectBuskingZoneListQuery , sb_id , function(err , result) {
+			connection.query( selectBoroughListQuery , function(err , result) {
 				if( err ) {
 					res.status(500).send({
 						status : "fail" ,
 						message : "internal server err"
 					}) ;
 					connection.release() ;
-					callback( "selectBuskingZoneListQuery err") ;
+					callback( "selectBoroughListQuery err") ;
 				} else {
 
 					let list = [] ;
@@ -53,9 +50,8 @@ router.get( '/' , function( req , res ) {
 
 						let data = {
 
-							sbz_id : result[i].sbz_id ,
-							sbz_name : result[i].sbz_name ,
-							sbz_photo : result[i].sbz_photo
+							sb_id : result[i].sb_id ,
+							sb_name : result[i].sb_name
 						}
 
 						list.push( data ) ;
@@ -71,9 +67,9 @@ router.get( '/' , function( req , res ) {
 			res.status(200).send({
 				status : "success" ,
 				data : list ,
-				message : "successful get buskingZoneList"
+				message : "successful get boroughList"
 			}) ;
-			callback( null , "successful get buskingZoneList") ;
+			callback( null , "successful get boroughList" ) ;
 		}
 	] ;
 

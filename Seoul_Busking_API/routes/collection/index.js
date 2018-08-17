@@ -9,4 +9,8 @@ router.use( '/calendarList' , calendarList ) ;
 const buskingZoneList = require( './buskingZoneList' ) ;
 router.use( '/buskingZoneList' , buskingZoneList ) ;
 
+//	자치구 목록 가져오기
+const boroughList = require( './boroughList' ) ;
+router.use( '/boroughList' , boroughList ) ;
+
 module.exports = router;
