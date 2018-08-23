@@ -55,7 +55,10 @@ router.get( '/' , function( req , res ) {
 
 							sbz_id : result[i].sbz_id ,
 							sbz_name : result[i].sbz_name ,
-							sbz_photo : result[i].sbz_photo
+							sbz_photo : result[i].sbz_photo ,
+							sbz_address : result[i].sbz_address ,
+							sbz_longitude : result[i].sbz_longitude ,
+							sbz_latitude : result[i].sbz_latitude
 						}
 
 						list.push( data ) ;

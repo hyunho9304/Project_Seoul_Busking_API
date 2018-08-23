@@ -37,6 +37,9 @@ router.post('/', upload.single('sbz_photo'), function(req, res) {
 
 	let sb_id = req.body.sb_id ;
 	let sbz_name = req.body.sbz_name ;
+	let sbz_address = req.body.sbz_address ;
+	let sbz_longitude = req.body.sbz_longitude ;
+	let sbz_latitude = req.body.sbz_latitude ;
 	let sbz_photo = req.file.location ;
 
 	let uploadtime = moment().format( "YYYYMMDDHHmmss" ) ;
@@ -60,8 +63,8 @@ router.post('/', upload.single('sbz_photo'), function(req, res) {
 
 		function( connection , callback ) {
 
-			let insertSeoulBuskingZoneQuery = 'INSERT INTO SeoulBuskingZone VALUES( ? , ? , ? , ? , ? )' ;
-			let queryArr = [ null , sb_id , sbz_name , sbz_photo , uploadtime ] ;
+			let insertSeoulBuskingZoneQuery = 'INSERT INTO SeoulBuskingZone VALUES( ? , ? , ? , ? , ? , ? , ? , ? )' ;
+			let queryArr = [ null , sb_id , sbz_name , sbz_photo , uploadtime , sbz_address , sbz_longitude , sbz_latitude ] ;
 
 			connection.query( insertSeoulBuskingZoneQuery , queryArr , function( err , result ) {
 				if(err) {
