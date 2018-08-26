@@ -13,4 +13,8 @@ router.use( '/upload' , upload ) ;
 const collection = require( './collection/index' ) ;
 router.use( '/collection' , collection ) ;
 
+//	예약
+const reservation = require( './reservation/index' ) ;
+router.use( '/reservation' , reservation ) ;
+
 module.exports = router;
