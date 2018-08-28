@@ -5,4 +5,8 @@ var router = express.Router();
 const possibility = require( './possibility' ) ;
 router.use( '/possibility' , possibility ) ;
 
+//	예약 시도
+const attempt = require( './attempt' ) ;
+router.use( '/attempt' , attempt ) ;
+
 module.exports = router;
