@@ -9,4 +9,8 @@ router.use( '/possibility' , possibility ) ;
 const attempt = require( './attempt' ) ;
 router.use( '/attempt' , attempt ) ;
 
+//	예약 목록
+const list = require( './list' ) ;
+router.use( '/list' , list ) ;
+
 module.exports = router;
