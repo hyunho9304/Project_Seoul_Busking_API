@@ -1,8 +1,8 @@
 /*
-	URL : /collection/boroughList
-	Description : 자치구 리스트
+	URL : /collection/buskingZoneListAll
+	Description : 존 리스트 전체
 	Content-type : x-www-form-urlencoded
-	method : GET - query
+	method : GET
 */
 
 const express = require('express');
@@ -31,29 +31,30 @@ router.get( '/' , function( req , res ) {
 
 		function( connection , callback ) {
 
-			let selectBoroughListQuery = 'SELECT * FROM SeoulBorough' ;
+			let selectBuskingZoneListAllQuery = 'SELECT * FROM SeoulBorough SB , SeoulBuskingZone SBZ WHERE SB.sb_id = SBZ.sb_id ORDER BY sbz_id ASC' ;
 
-			connection.query( selectBoroughListQuery , function(err , result) {
+			connection.query( selectBuskingZoneListAllQuery , function(err , result) {
 				if( err ) {
 					res.status(500).send({
 						status : "fail" ,
 						message : "internal server err"
 					}) ;
 					connection.release() ;
-					callback( "selectBoroughListQuery err") ;
+					callback( "selectBuskingZoneListAllQuery err") ;
 				} else {
 
 					let list = [] ;
 
 					for( var i = 0 ; i < result.length ; i++ ) {
 
-
 						let data = {
-
-							sb_id : result[i].sb_id ,
+							sbz_id : result[i].sbz_id ,
 							sb_name : result[i].sb_name ,
-							sb_longitude : result[i].sb_longitude ,
-							sb_latitude : result[i].sb_latitude
+							sbz_name : result[i].sbz_name ,
+							sbz_photo : result[i].sbz_photo ,
+							sbz_address : result[i].sbz_address ,
+							sbz_longitude : result[i].sbz_longitude ,
+							sbz_latitude : result[i].sbz_latitude
 						}
 
 						list.push( data ) ;
@@ -69,9 +70,9 @@ router.get( '/' , function( req , res ) {
 			res.status(200).send({
 				status : "success" ,
 				data : list ,
-				message : "successful get boroughList"
+				message : "successful get buskingZoneListAll"
 			}) ;
-			callback( null , "successful get boroughList" ) ;
+			callback( null , "successful get buskingZoneListAll") ;
 		}
 	] ;
 

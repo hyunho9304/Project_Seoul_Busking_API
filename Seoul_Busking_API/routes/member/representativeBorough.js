@@ -54,7 +54,9 @@ router.post('/', function(req, res) {
 						status : "success" ,
 						data : {
 							sb_id : result[0].sb_id ,
-							sb_name : result[0].sb_name
+							sb_name : result[0].sb_name ,
+							sb_longitude : result[0].sb_longitude ,
+							sb_latitude : result[0].sb_latitude
 						} ,
 						message : "successful get member representativeBorough"
 					}) ;
