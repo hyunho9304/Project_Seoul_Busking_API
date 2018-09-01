@@ -17,4 +17,8 @@ router.use( '/signin' , signin ) ;
 const representativeBorough = require( './representativeBorough' ) ;
 router.use( '/representativeBorough' , representativeBorough ) ;
 
+//	대표 자치구 변경
+const update = require( './update/index' ) ;
+router.use( '/update' , update ) ;
+
 module.exports = router;
