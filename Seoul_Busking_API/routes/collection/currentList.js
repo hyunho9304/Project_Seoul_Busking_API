@@ -80,9 +80,9 @@ router.get( '/' , function( req , res ) {
 									sbz_id : result[j].sbz_id ,
 									r_startTime : result[j].r_startTime ,
 									r_endTime : result[j].r_endTime ,
+									r_category : result[i].r_category ,
 									member_profile : result[j].member_profile ,
-									member_nickname : result[j].member_nickname ,
-									member_category : result[j].member_category 
+									member_nickname : result[j].member_nickname
 								}
 							}
 						}

@@ -57,9 +57,9 @@ router.get( '/' , function( req , res ) {
 
 							r_startTime : result[i].r_startTime ,
 							r_endTime : result[i].r_endTime ,
+							r_category : result[i].r_category ,
 							member_profile : result[i].member_profile ,
-							member_nickname : result[i].member_nickname ,
-							member_category : result[i].member_category
+							member_nickname : result[i].member_nickname
 						}
 						list.push( data ) ;
 					}
