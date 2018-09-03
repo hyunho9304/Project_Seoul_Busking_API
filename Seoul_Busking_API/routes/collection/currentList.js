@@ -82,7 +82,9 @@ router.get( '/' , function( req , res ) {
 									r_endTime : result[j].r_endTime ,
 									r_category : result[i].r_category ,
 									member_profile : result[j].member_profile ,
-									member_nickname : result[j].member_nickname
+									member_nickname : result[j].member_nickname ,
+									member_category : result[i].member_category ,
+									member_score : result[j].member_score
 								}
 							}
 						}
@@ -94,7 +96,8 @@ router.get( '/' , function( req , res ) {
 								r_endTime : -1 ,
 								member_profile : "-1" ,
 								member_nickname : "-1" ,
-								member_category : "-1"
+								member_category : "-1" ,
+								member_score : -1
 							}
 						}
 
