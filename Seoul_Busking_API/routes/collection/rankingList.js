@@ -42,10 +42,40 @@ router.post( '/' , function( req ,res ) {
 			let selectMemberRanking = '' ;
 
 			if( select1 === "전체" ) {
-
 				if( select2 === "팔로우 순" ) {
 
+					selectMemberRanking = 'SELECT * FROM Member WHERE member_type = 1 ORDER BY member_followCnt DESC'
 
+					connection.query( selectMemberRanking , select1 , function( err , result ) {
+						if( err ) {
+							res.status(500).send( {
+								status : "fail" ,
+								message : "internal server err"
+							});
+							connection.release() ;
+							callback( "selectMemberRanking err" ) ;
+						} else{
+							
+							let list = [] ;
+
+							for( var i = 0 ; i < result.length ; i++ ) {
+
+								if( i == 100 )
+									break
+
+								let data = {
+
+									member_num : ( i + 1 ) ,
+									member_profile : result[i].member_profile ,
+									member_nickname : result[i].member_nickname ,
+									member_category : result[i].member_category
+								}
+								list.push( data ) ;
+							}
+							connection.release() ;
+							callback( null , list ) ;
+						}
+					});
 				} else {	//	전체 별점 순
 
 					selectMemberRanking = 'SELECT * FROM Member WHERE member_type = 1 ORDER BY member_score DESC'
@@ -82,8 +112,41 @@ router.post( '/' , function( req ,res ) {
 					});
 				}
 			} else {
-
 				if( select2 === "팔로우 순" ) {
+
+					selectMemberRanking = 'SELECT * FROM Member WHERE member_type = 1 AND member_category = ? ORDER BY member_followCnt DESC'
+
+					connection.query( selectMemberRanking , select1 , function( err , result ) {
+						if( err ) {
+							res.status(500).send( {
+								status : "fail" ,
+								message : "internal server err"
+							});
+							connection.release() ;
+							callback( "selectMemberRanking err" ) ;
+						} else{
+							
+							let list = [] ;
+
+							for( var i = 0 ; i < result.length ; i++ ) {
+
+								if( i == 100 )
+									break
+
+								let data = {
+
+									member_num : ( i + 1 ) ,
+									member_profile : result[i].member_profile ,
+									member_nickname : result[i].member_nickname ,
+									member_category : result[i].member_category
+								}
+								list.push( data ) ;
+							}
+							connection.release() ;
+							callback( null , list ) ;
+						}
+					});
+
 
 				} else {
 
