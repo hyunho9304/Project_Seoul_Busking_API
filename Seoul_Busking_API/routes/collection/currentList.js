@@ -60,7 +60,7 @@ router.get( '/' , function( req , res ) {
 				if( err ) {
 					res.status(500).send( {
 						status : "fail" ,
-						msg : "internal server err"
+						message : "internal server err"
 					});
 					connection.release() ;
 					callback( "selectCurrentList err" + err ) ;

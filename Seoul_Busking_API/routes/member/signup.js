@@ -72,8 +72,8 @@ router.post('/', function(req, res) {
 
 							let cryptopwd = hashed.toString( 'base64' ) ;
 
-							let insertMemberQuery = 'INSERT INTO Member VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )' ;
-							let queryArr = [ member_type , member_category , member_ID , cryptopwd , salt , member_nickname , null , null , 0 , 13 ] ;
+							let insertMemberQuery = 'INSERT INTO Member VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )' ;
+							let queryArr = [ member_type , member_category , member_ID , cryptopwd , salt , member_nickname , null , null , 0 , 0 , 0 , 13 ] ;
 
 							connection.query( insertMemberQuery , queryArr , function( err , result ) {
 								if(err) {

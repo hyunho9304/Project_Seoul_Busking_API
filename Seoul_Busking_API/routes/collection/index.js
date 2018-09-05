@@ -21,4 +21,12 @@ router.use( '/boroughList' , boroughList ) ;
 const currentList = require( './currentList' ) ;
 router.use( '/currentList' , currentList ) ;
 
+//	랭킹 리스트
+const rankingList = require( './rankingList' ) ;
+router.use( '/rankingList' , rankingList ) ;
+
+//	팔로잉 확인
+const isFollowing = require( './isFollowing' ) ;
+router.use( '/isFollowing' , isFollowing ) ;
+
 module.exports = router;
