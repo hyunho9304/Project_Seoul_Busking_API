@@ -21,4 +21,8 @@ router.use( '/representativeBorough' , representativeBorough ) ;
 const update = require( './update/index' ) ;
 router.use( '/update' , update ) ;
 
+//	팔로잉
+const following = require( './following' ) ;
+router.use( '/following' , following ) ;
+
 module.exports = router;
