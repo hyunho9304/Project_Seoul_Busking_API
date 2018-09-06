@@ -191,9 +191,9 @@ router.post( '/' , function( req ,res ) {
 			res.status(201).send({
 				status : "success" ,
 				data : list ,
-				message : "successfully get RankingList"
+				message : "successful get RankingList"
 			});
-			callback ( null , "successfully get RankingList" ) ;
+			callback ( null , "successful get RankingList" ) ;
 		}
 	] ;
 

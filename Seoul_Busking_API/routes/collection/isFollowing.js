@@ -55,17 +55,17 @@ router.post( '/' , function( req ,res ) {
 					if( result.length != 0 ) {
 						res.status(201).send({
 							status : "success" ,
-							message : "successfully get isfollowing 1"
+							message : "successful get isfollowing 1"
 						});
 						connection.release() ;
-						callback ( null , "successfully get isfollowing 1" ) ;
+						callback ( null , "successful get isfollowing 1" ) ;
 					} else {
 						res.status(401).send({
 							status : "success" ,
-							message : "successfully get isfollowing 0"
+							message : "successful get isfollowing 0"
 						});
 						connection.release() ;
-						callback ( null , "successfully get isfollowing 0" ) ;
+						callback ( null , "successful get isfollowing 0" ) ;
 					}
 				}
 			});

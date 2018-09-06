@@ -25,6 +25,10 @@ router.use( '/currentList' , currentList ) ;
 const rankingList = require( './rankingList' ) ;
 router.use( '/rankingList' , rankingList ) ;
 
+//	멤버 리스트
+const memberList = require( './memberList' ) ;
+router.use( '/memberList' , memberList ) ;
+
 //	팔로잉 확인
 const isFollowing = require( './isFollowing' ) ;
 router.use( '/isFollowing' , isFollowing ) ;
