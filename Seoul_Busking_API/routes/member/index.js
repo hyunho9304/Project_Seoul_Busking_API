@@ -25,4 +25,9 @@ router.use( '/update' , update ) ;
 const following = require( './following' ) ;
 router.use( '/following' , following ) ;
 
+//	멤버정보
+const info = require( './info/index' ) ;
+router.use( '/info' , info ) ;
+
+
 module.exports = router;

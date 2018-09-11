@@ -1,6 +1,6 @@
 /*
-	URL : /member/representativeBorough
-	Description : 멤버 대표 자치구 index 가져오기
+	URL : /member/info/basic
+	Description : 멤버 기본 프로필 정보 가져오기
 	Content-type : x-www-form-urlencoded
 	method : POST - Body
 	Body = {
@@ -10,7 +10,7 @@
 
 const express = require('express');
 const router = express.Router();
-const pool = require('../../config/dbPool');
+const pool = require('../../../config/dbPool');
 const async = require('async');
 const moment = require( 'moment' ) ;
 
@@ -37,29 +37,34 @@ router.post('/', function(req, res) {
 
 		function( connection , callback ) {
 
-			let checkRepresentativeBoroughQuery = 'SELECT * FROM Member M , SeoulBorough SB WHERE M.sb_id = SB.sb_id AND member_nickname = ?' ;
+			let selectMemberInfoBasicQuery = 'SELECT * FROM Member WHERE member_nickname = ?' ;
 			
-			connection.query( checkRepresentativeBoroughQuery , member_nickname , function( err , result ) {
+			connection.query( selectMemberInfoBasicQuery , member_nickname , function( err , result ) {
 				if(err) {
 					res.status(500).send({
 						status : "fail" ,
 						message : "internal server err"
 					}) ;
 					connection.release() ;
-					callback( "checkRepresentativeBoroughQuery err") ;
+					callback( "selectMemberInfoBasicQuery err") ;
 				} else {
 					res.status(201).send({
 						status : "success" ,
 						data : {
-							sb_id : result[0].sb_id ,
-							sb_name : result[0].sb_name ,
-							sb_longitude : result[0].sb_longitude ,
-							sb_latitude : result[0].sb_latitude
+
+							member_type : result[0].member_type ,
+							member_category : result[0].member_category ,
+							member_nickname : result[0].member_nickname ,
+							member_profile : result[0].member_profile ,
+							member_introduction : result[0].member_introduction ,
+							member_score : result[0].member_score ,
+							member_followCnt : result[0].member_followCnt ,
+							member_followingCnt : result[0].member_followingCnt
 						} ,
-						message : "successful get member representativeBorough"
+						message : "successful get member info basic"
 					}) ;
 					connection.release() ;
-					callback( null , "successful get member representativeBorough" ) ;
+					callback( null , "successful get member info basic" ) ;
 				}
 			}) ;
 		}
