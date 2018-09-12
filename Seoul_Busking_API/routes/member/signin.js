@@ -55,6 +55,8 @@ router.post('/', function(req, res) {
 					if( result.length == 0 ) {
 						res.status(401).send({
 							status : "fail" ,
+							data : {
+							} ,
 							message : "failed login"
 						});
 						connection.release() ;
@@ -83,6 +85,8 @@ router.post('/', function(req, res) {
 					if( cryptopwd !== object.member_PW ) {
 						res.status(401).send({
 							status : "fail" ,
+							data : {
+							} ,
 							message : "failed login"
 						}) ;
 						connection.release() ;
