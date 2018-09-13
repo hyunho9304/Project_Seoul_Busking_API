@@ -29,5 +29,9 @@ router.use( '/following' , following ) ;
 const info = require( './info/index' ) ;
 router.use( '/info' , info ) ;
 
+//	삭제
+const drop = require( './drop/index' ) ;
+router.use( '/drop' , drop ) ;
+
 
 module.exports = router;

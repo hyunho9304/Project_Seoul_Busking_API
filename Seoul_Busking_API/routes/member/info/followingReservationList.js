@@ -52,9 +52,6 @@ router.post( '/' , function( req , res ) {
 					callback( "selectFollowingReservationQuery err") ;
 				} else {
 
-					console.log( result );
-
-
 					let list = [] ;
 
 					for( var i = 0 ; i < result.length ; i++ ) {
