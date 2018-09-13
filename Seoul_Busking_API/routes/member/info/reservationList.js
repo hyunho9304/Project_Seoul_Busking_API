@@ -38,7 +38,7 @@ router.post( '/' , function( req , res ) {
 
 		function( connection , callback ) {
 
-			let selectReservationListQuery = 'SELECT * FROM Reservation R , SeoulBuskingZone SBZ WHERE R.sbz_id = SBZ.sbz_id AND R.member_nickname = ? AND R.r_date >= ? ORDER BY R.r_date ASC , R.r_startTime ASC' ;
+			let selectReservationListQuery = 'SELECT * FROM Reservation R , SeoulBuskingZone SBZ , SeoulBorough SB WHERE R.sbz_id = SBZ.sbz_id AND SBZ.sb_id = SB.sb_id AND R.member_nickname = ? AND R.r_date >= ? ORDER BY R.r_date ASC , R.r_startTime ASC' ;
 			let queryArr = [ member_nickname , r_date ] ;
 
 			connection.query( selectReservationListQuery , queryArr , function(err , result) {
@@ -60,7 +60,10 @@ router.post( '/' , function( req , res ) {
 							r_date : result[i].r_date ,
 							r_startTime : result[i].r_startTime ,
 							r_endTime : result[i].r_endTime ,
+							sb_name : result[i].sb_name ,
 							sbz_name : result[i].sbz_name ,
+							sbz_address : result[i].sbz_address ,
+							sbz_photo : result[i].sbz_photo ,
 							sbz_longitude : result[i].sbz_longitude ,
 							sbz_latitude : result[i].sbz_latitude
 						}
