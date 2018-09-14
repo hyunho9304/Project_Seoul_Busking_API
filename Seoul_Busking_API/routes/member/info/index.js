@@ -13,9 +13,13 @@ router.use( '/reservationList' , reservationList ) ;
 const followingReservationList = require( './followingReservationList' ) ;
 router.use( '/followingReservationList' , followingReservationList ) ;
 
-//	my 팔로잉 리스트
+//	팔로잉 리스트
 const followingList = require( './followingList' ) ;
 router.use( '/followingList' , followingList ) ;
+
+//	팔로워 리스트
+const followList = require( './followList' ) ;
+router.use( '/followList' , followList ) ;
 
 
 module.exports = router;

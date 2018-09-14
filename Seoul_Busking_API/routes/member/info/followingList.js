@@ -1,9 +1,11 @@
 /*
 	URL : /member/info/followingList
-	Description : 내가 팔로잉 하는 리스트
+	Description : selectMember의 팔로잉 하는 리스트
 	Content-type : x-www-form-urlencoded
-	method : GET - query
-	query = /?member_nickname = { 나 = 멤버 이름 }
+	method : POST - body
+	Body = {
+		member_selectMemberNickname : String 	//	확인 하고 싶은 닉네임
+	}
 */
 
 const express = require('express');
@@ -12,9 +14,9 @@ const pool = require( '../../../config/dbPool' ) ;	//	경로하나하나
 const async = require( 'async' ) ;		//	install
 const moment = require( 'moment' ) ;
 
-router.get( '/' , function( req ,res ) { 
+router.post( '/' , function( req ,res ) { 
 
-	let member_nickname = req.query.member_nickname ;
+	let member_selectMemberNickname = req.body.member_selectMemberNickname ;
 
 	let task = [
 
@@ -34,10 +36,10 @@ router.get( '/' , function( req ,res ) {
 		} ,
 
 		function( connection , callback ) {
-			//	이름정렬( 한글 먼져 영어 나중 )
-			let selectFollowingListQuery = 'SELECT * FROM Following F , Member M WHERE F.member_following_nickname = M.member_nickname AND F.member_follow_nickname = ? ORDER BY if(ASCII(SUBSTRING(F.member_following_nickname , 1)) < 128, 9, 1) ASC , F.member_following_nickname ASC' ;
 
-			connection.query( selectFollowingListQuery , member_nickname , function( err , result ) {
+			let selectFollowingListQuery = 'SELECT * FROM Member M , Following F WHERE M.member_nickname = F.member_following_nickname AND member_follow_nickname = ? ORDER BY if(ASCII(SUBSTRING(F.member_following_nickname , 1)) < 128, 9, 1) ASC , F.member_following_nickname ASC' ;
+
+			connection.query( selectFollowingListQuery , member_selectMemberNickname , function( err , result ) {
 				if( err ) {
 					res.status(500).send( {
 						status : "fail" ,
@@ -46,7 +48,7 @@ router.get( '/' , function( req ,res ) {
 					connection.release() ;
 					callback( "selectFollowingListQuery err" ) ;
 				} else{
-						
+
 					let list = [] ;
 
 					for( var i = 0 ; i < result.length ; i++ ) {
@@ -59,6 +61,7 @@ router.get( '/' , function( req ,res ) {
 						}
 						list.push( data ) ;
 					}
+
 					connection.release() ;
 					callback( null , list ) ;
 				}
@@ -67,7 +70,7 @@ router.get( '/' , function( req ,res ) {
 
 		function( list , callback ) {
 
-			res.status(200).send({
+			res.status(201).send({
 				status : "success" ,
 				data : list ,
 				message : "successful get followingList"
