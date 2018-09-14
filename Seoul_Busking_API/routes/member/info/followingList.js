@@ -37,7 +37,7 @@ router.post( '/' , function( req ,res ) {
 
 		function( connection , callback ) {
 
-			let selectFollowingListQuery = 'SELECT * FROM Member M , Following F WHERE M.member_nickname = F.member_following_nickname AND member_follow_nickname = ? ORDER BY if(ASCII(SUBSTRING(F.member_following_nickname , 1)) < 128, 9, 1) ASC , F.member_following_nickname ASC' ;
+			let selectFollowingListQuery = 'SELECT * FROM Member M , Following F WHERE M.member_nickname = F.member_following_nickname AND F.member_follow_nickname = ? ORDER BY if(ASCII(SUBSTRING(F.member_following_nickname , 1)) < 128, 9, 1) ASC , F.member_following_nickname ASC' ;
 
 			connection.query( selectFollowingListQuery , member_selectMemberNickname , function( err , result ) {
 				if( err ) {
