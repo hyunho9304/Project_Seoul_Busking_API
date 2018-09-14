@@ -2,7 +2,7 @@
 	URL : /member/info/reservationList
 	Description : 해당 멤버 예약 리스트
 	Content-type : x-www-form-urlencoded
-	method : GET - Body
+	method : POST - Body
 	Body = {
 		member_nickname : String		//	닉네임
 		r_date : Int 					//	예약날짜 20180915
