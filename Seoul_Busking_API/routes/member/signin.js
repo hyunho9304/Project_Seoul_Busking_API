@@ -96,7 +96,8 @@ router.post('/', function(req, res) {
 							status : "success" ,
 							data : {
 								member_type : object.member_type ,
-								member_nickname : object.member_nickname
+								member_nickname : object.member_nickname ,
+								member_ID : member_ID
 							} ,
 							message : "successful signin"
 						}) ;

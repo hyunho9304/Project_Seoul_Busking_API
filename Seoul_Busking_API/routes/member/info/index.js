@@ -21,5 +21,9 @@ router.use( '/followingList' , followingList ) ;
 const followList = require( './followList' ) ;
 router.use( '/followList' , followList ) ;
 
+//	기본정보 memberInfo 최신으로 업데이트된것 가져오기
+const re = require( './re' ) ;
+router.use( '/re' , re ) ;
+
 
 module.exports = router;

@@ -89,7 +89,8 @@ router.post('/', function(req, res) {
 										status : "success" ,
 										data : {
 											member_type : member_type ,
-											member_nickname : member_nickname
+											member_nickname : member_nickname ,
+											member_ID : member_ID
 										} ,
 										message : "successful signup"
 									});
