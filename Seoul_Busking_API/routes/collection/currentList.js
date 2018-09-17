@@ -1,9 +1,9 @@
 /*
 	URL : /collection/currentList
-	Description : 현재시간 해당 자치구 공연목록
+	Description : 현재시간 공연목록
 	Content-type : x-www-form-urlencoded
 	method : GET - query
-	query = /?r_date={오늘날짜}&r_time={현재시}&sb_id={ 자치구 index }
+	query = /?r_date={오늘날짜}&r_time={현재시}&r_min={현재분}
 */
 
 const express = require('express');
@@ -16,6 +16,7 @@ router.get( '/' , function( req , res ) {
 
 	let r_date = req.query.r_date ;
 	let r_time = req.query.r_time ;
+	let r_min = req.query.r_min ;
 
 	let task = [
 
@@ -53,8 +54,8 @@ router.get( '/' , function( req , res ) {
 
 		function( connection , object , callback ) {
 
-			let selectCurrentList = 'SELECT * FROM Reservation R , Member M WHERE R.member_nickname = M.member_nickname AND R.r_date = ? AND R.r_startTime <= ? AND R.r_endTime > ?' ;
-			let queryArr = [ r_date , r_time , r_time] ;
+			let selectCurrentList = 'SELECT * FROM Reservation R , Member M WHERE R.member_nickname = M.member_nickname AND R.r_date = ? AND R.r_startTime <= ? AND R.r_endTime >= ? ' ;
+			let queryArr = [ r_date , r_time , r_time ] ;
 
 			connection.query( selectCurrentList , queryArr , function( err , result ) {
 				if( err ) {
@@ -75,16 +76,55 @@ router.get( '/' , function( req , res ) {
 						for( var j = 0 ; j < result.length ; j++ ) {
 
 							if( object[i].sbz_id == result[j].sbz_id ) {
-								index = 1 ;
-								data = {
-									sbz_id : result[j].sbz_id ,
-									r_startTime : result[j].r_startTime ,
-									r_endTime : result[j].r_endTime ,
-									r_category : result[i].r_category ,
-									member_profile : result[j].member_profile ,
-									member_nickname : result[j].member_nickname ,
-									member_category : result[i].member_category ,
-									member_score : result[j].member_score
+								if( r_time == result[j].r_startTime ) {
+									if( r_min >= result[j].r_startMin ) {
+										index = 1 ;
+										data = {
+											sbz_id : result[j].sbz_id ,
+	 										r_startTime : result[j].r_startTime ,
+	 										r_startMin : result[j].r_startMin ,
+											r_endTime : result[j].r_endTime ,
+											r_endMin : result[j].r_endMin ,
+											r_category : result[j].r_category ,
+											member_profile : result[j].member_profile ,
+											member_nickname : result[j].member_nickname ,
+											member_score : result[j].member_score
+										}
+									} else {
+										index = -1 ;
+									}
+								} else if( r_time > result[j].r_startTime && r_time < result[j].r_endTime ) {
+									index = 1 ;
+									data = {
+										sbz_id : result[j].sbz_id ,
+	 									r_startTime : result[j].r_startTime ,
+	 									r_startMin : result[j].r_startMin ,
+										r_endTime : result[j].r_endTime ,
+										r_endMin : result[j].r_endMin ,
+										r_category : result[j].r_category ,
+										member_profile : result[j].member_profile ,
+										member_nickname : result[j].member_nickname ,
+										member_score : result[j].member_score
+									}
+								} else if( r_time == result[j].r_endTime ) {
+									if( r_min <= result[j].r_endMin ) {
+										index = 1 ;
+										data = {
+											sbz_id : result[j].sbz_id ,
+	 										r_startTime : result[j].r_startTime ,
+	 										r_startMin : result[j].r_startMin ,
+											r_endTime : result[j].r_endTime ,
+											r_endMin : result[j].r_endMin ,
+											r_category : result[j].r_category ,
+											member_profile : result[j].member_profile ,
+											member_nickname : result[j].member_nickname ,
+											member_score : result[j].member_score
+										}
+									} else {
+										index = -1 ;
+									}
+								} else {
+									index = -1 ;
 								}
 							}
 						}
@@ -93,10 +133,12 @@ router.get( '/' , function( req , res ) {
 							data = {
 								sbz_id : -1 ,
 								r_startTime : -1 ,
+								r_startMin : -1 ,
 								r_endTime : -1 ,
+								r_endMin : -1 ,
+								r_category : "-1" ,
 								member_profile : "-1" ,
 								member_nickname : "-1" ,
-								member_category : "-1" ,
 								member_score : -1
 							}
 						}

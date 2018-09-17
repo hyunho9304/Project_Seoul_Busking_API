@@ -36,7 +36,7 @@ router.get( '/' , function( req , res ) {
 
 		function( connection , callback ) {
 
-			let selectReservationListQuery = 'SELECT * FROM Reservation R , Member M WHERE R.member_nickname = M.member_nickname AND R.r_date = ? AND R.sb_id = ? AND R.sbz_id = ? ORDER BY r_startTime ASC' ;
+			let selectReservationListQuery = 'SELECT * FROM Reservation R , Member M WHERE R.member_nickname = M.member_nickname AND R.r_date = ? AND R.sb_id = ? AND R.sbz_id = ? ORDER BY r_startTime ASC , r_startMin ASC' ;
 			let queryArr = [ r_date , sb_id , sbz_id ] ;
 
 			connection.query( selectReservationListQuery , queryArr , function(err , result) {
@@ -56,7 +56,9 @@ router.get( '/' , function( req , res ) {
 						let data = {
 
 							r_startTime : result[i].r_startTime ,
+							r_startMin : result[i].r_startMin ,
 							r_endTime : result[i].r_endTime ,
+							r_endMin : result[i].r_endMin ,
 							r_category : result[i].r_category ,
 							member_profile : result[i].member_profile ,
 							member_nickname : result[i].member_nickname
