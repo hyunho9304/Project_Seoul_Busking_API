@@ -5,4 +5,8 @@ var router = express.Router();
 const borough = require( './borough' ) ;
 router.use( '/borough' , borough ) ;
 
+//	프로필 수정
+const info = require( './info' ) ;
+router.use( '/info' , info ) ;
+
 module.exports = router;

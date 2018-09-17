@@ -55,6 +55,7 @@ router.post('/', function(req, res) {
 							member_type : result[0].member_type ,
 							member_category : result[0].member_category ,
 							member_nickname : result[0].member_nickname ,
+							member_backProfile : result[0].member_backProfile ,
 							member_profile : result[0].member_profile ,
 							member_introduction : result[0].member_introduction ,
 							member_score : result[0].member_score ,
