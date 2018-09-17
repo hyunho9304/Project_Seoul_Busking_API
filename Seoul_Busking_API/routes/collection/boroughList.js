@@ -51,6 +51,7 @@ router.get( '/' , function( req , res ) {
 						let data = {
 
 							sb_id : result[i].sb_id ,
+							sb_type : result[i].sb_type ,
 							sb_name : result[i].sb_name ,
 							sb_longitude : result[i].sb_longitude ,
 							sb_latitude : result[i].sb_latitude
