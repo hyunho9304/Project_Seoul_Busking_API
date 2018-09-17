@@ -37,5 +37,9 @@ router.use( '/drop' , drop ) ;
 const review = require( './review/index' ) ;
 router.use( '/review' , review ) ;
 
+//	신고
+const report = require( './report' ) ;
+router.use( '/report' , report ) ;
+
 
 module.exports = router;
