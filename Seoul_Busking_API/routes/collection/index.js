@@ -9,6 +9,10 @@ router.use( '/calendarList' , calendarList ) ;
 const buskingZoneList = require( './buskingZoneList' ) ;
 router.use( '/buskingZoneList' , buskingZoneList ) ;
 
+//	자치구에 해당되는 버스킹 존 중 type = 1 인 목록 가져오기
+const buskingZoneListType = require( './buskingZoneListType' ) ;
+router.use( '/buskingZoneListType' , buskingZoneListType ) ;
+
 //	버스킹 존 목록전체 가져오기
 const buskingZoneListAll = require( './buskingZoneListAll' ) ;
 router.use( '/buskingZoneListAll' , buskingZoneListAll ) ;
