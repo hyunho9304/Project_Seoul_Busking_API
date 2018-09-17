@@ -63,7 +63,9 @@ router.post( '/' , function( req , res ) {
 							r_category : result[i].r_category ,
 							r_date : result[i].r_date ,
 							r_startTime : result[i].r_startTime ,
+							r_startMin : result[i].r_startMin ,
 							r_endTime : result[i].r_endTime ,
+							r_endMin : result[i].r_endMin ,
 							sbz_name : result[i].sbz_name
 						}
 						list.push( data ) ;
