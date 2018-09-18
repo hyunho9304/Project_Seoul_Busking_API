@@ -3,7 +3,7 @@
 	Description : 에약 가능 확인
 	Content-type : x-www-form-urlencoded
 	method : GET - query
-	query = /?r_date={ 예약 날짜 }&sb_id={ 자치구 index }&sbz_id={ 존 index }
+	query = /?r_date={ 예약 날짜 }&r_time={ 현재시간 }&sb_id={ 자치구 index }&sbz_id={ 존 index }
 */
 
 const express = require('express');
@@ -15,6 +15,7 @@ const moment = require( 'moment' ) ;
 router.get( '/' , function( req , res ) {
 
 	let r_date = req.query.r_date ;
+	let r_time = req.query.r_time ;
 	let sb_id = req.query.sb_id ;
 	let sbz_id = req.query.sbz_id ;
 
@@ -82,6 +83,13 @@ router.get( '/' , function( req , res ) {
 							break ;
 						}
 					}
+
+					let timeArr = [ 17 , 18 , 19 , 20 , 21 , 22 ] ;
+					for( var i = 0 ; i < timeArr.length ; i ++ ) {
+						if( r_time >= timeArr[i] )
+							list[i] = -1 ;
+					}
+
 					connection.release() ;
 					callback( null , list ) ;
 				}
