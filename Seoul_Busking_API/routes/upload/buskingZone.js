@@ -9,7 +9,7 @@
 		sbz_name : String , 		//	존 이름
 		sbz_photo : file 			//	존 사진
 		sbz_address : String ,		//	존 주소
-		sbz_logitude : Double , 	//	존 경도
+		sbz_longitude : Double , 	//	존 경도
 		sbz_latitude : Double , 	//	존 위도
 	}
 */

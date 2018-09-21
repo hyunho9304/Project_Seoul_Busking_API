@@ -34,7 +34,7 @@ router.get( '/' , function( req , res ) {
 
 		function( connection , callback ) {
 
-			let selectBuskingZoneListQuery = 'SELECT * FROM SeoulBuskingZone WHERE sb_id = ? AND sbz_type = 1 ORDER BY sbz_uploadtime ASC' ;
+			let selectBuskingZoneListQuery = 'SELECT * FROM SeoulBuskingZone WHERE sb_id = ? AND sbz_type = 1 ORDER BY if(ASCII(SUBSTRING(sbz_name , 1)) < 128, 9, 1) ASC , sbz_name ASC' ;
 
 			connection.query( selectBuskingZoneListQuery , sb_id , function(err , result) {
 				if( err ) {
