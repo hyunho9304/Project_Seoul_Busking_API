@@ -85,9 +85,10 @@ router.get( '/' , function( req , res ) {
 						}
 					}
 
+					console.log( r_time );
 					console.log( r_today );
 					console.log( r_date );
-					
+
 					let timeArr = [ 17 , 18 , 19 , 20 , 21 , 22 ] ;
 					for( var i = 0 ; i < timeArr.length ; i ++ ) {
 						if( r_time >= timeArr[i] && r_today == r_date )
