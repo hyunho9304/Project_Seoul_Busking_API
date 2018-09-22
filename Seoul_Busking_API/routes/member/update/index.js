@@ -9,4 +9,8 @@ router.use( '/borough' , borough ) ;
 const info = require( './info' ) ;
 router.use( '/info' , info ) ;
 
+//	버스커 신청
+const type = require( './type' ) ;
+router.use( '/type' , type ) ;
+
 module.exports = router;

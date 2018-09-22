@@ -17,7 +17,6 @@ const moment = require( 'moment' ) ;
 router.post('/', function(req, res) {
 
 	let member_ID = req.body.member_ID ;
-	console.log( member_ID );
 
 	let task = [
 
