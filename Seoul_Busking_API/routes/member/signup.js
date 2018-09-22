@@ -73,7 +73,7 @@ router.post('/', function(req, res) {
 							let cryptopwd = hashed.toString( 'base64' ) ;
 
 							let insertMemberQuery = 'INSERT INTO Member VALUES( ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? )' ;
-							var tmpIntroduction = "안녕하세요~ " + member_nickname + " 입니다^^" ;
+							var tmpIntroduction = "안녕하세요~ " + member_nickname + " 입니다" ;
 							let queryArr = [ member_type , member_category , member_ID , cryptopwd , salt , member_nickname , null , null , tmpIntroduction , 0 , 0 , 0 , 13 ] ;
 
 							connection.query( insertMemberQuery , queryArr , function( err , result ) {
