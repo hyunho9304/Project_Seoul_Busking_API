@@ -14,9 +14,18 @@ const moment = require( 'moment' ) ;
 
 router.get( '/' , function( req , res ) {
 
-	let r_date = req.query.r_date ;
-	let r_time = req.query.r_time ;
-	let r_min = req.query.r_min ;
+	let year = moment().format( "YYYY" ) ;
+	let month = moment().format( "MM" ) ;
+	let day = moment().format( "DD" ) ;
+	let hour = moment().format( "HH" ) ;
+	let min = moment().format( "mm" ) ;
+	let datetime = year + month + day ;
+
+	let r_date = datetime ;
+	let r_time = hour ;
+	let r_min = min ;
+
+	console.log(min);
 
 	let task = [
 
@@ -36,7 +45,7 @@ router.get( '/' , function( req , res ) {
 
 		function( connection , callback ) {
 
-			let selectBuskingZoneListQuery = 'SELECT * FROM SeoulBuskingZone ORDER BY sb_id ASC' ;
+			let selectBuskingZoneListQuery = 'SELECT * FROM SeoulBuskingZone ORDER BY if(ASCII(SUBSTRING(sbz_name , 1)) < 128, 9, 1) ASC , sbz_name ASC' ;
 
 			connection.query( selectBuskingZoneListQuery , function(err , result) {
 				if( err ) {
