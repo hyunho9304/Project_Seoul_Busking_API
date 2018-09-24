@@ -22,8 +22,8 @@ const boroughList = require( './boroughList' ) ;
 router.use( '/boroughList' , boroughList ) ;
 
 //	현재 공연 목록 가져오기
-const currentList = require( './currentList' ) ;
-router.use( '/currentList' , currentList ) ;
+const isCurrent = require( './isCurrent' ) ;
+router.use( '/isCurrent' , isCurrent ) ;
 
 //	랭킹 리스트
 const rankingList = require( './rankingList' ) ;

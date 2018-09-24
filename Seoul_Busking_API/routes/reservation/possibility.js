@@ -14,9 +14,20 @@ const moment = require( 'moment' ) ;
 
 router.get( '/' , function( req , res ) {
 
+	let year = moment().format( "YYYY" ) ;
+	let month = moment().format( "MM" ) ;
+	let day = moment().format( "DD" ) ;
+	let hour = moment().format( "HH" ) ;
+	let min = moment().format( "mm" ) ;
+	let datetime = year + month + day ;
+
+	let r_today = datetime ;
+	let r_time = hour ;
+	let r_min = min ;
+
+
+
 	let r_date = req.query.r_date ;
-	let r_today = req.query.r_today ;
-	let r_time = req.query.r_time ;
 	let sb_id = req.query.sb_id ;
 	let sbz_id = req.query.sbz_id ;
 
@@ -84,10 +95,6 @@ router.get( '/' , function( req , res ) {
 							break ;
 						}
 					}
-
-					console.log( r_time );
-					console.log( r_today );
-					console.log( r_date );
 
 					let timeArr = [ 17 , 18 , 19 , 20 , 21 , 22 ] ;
 					for( var i = 0 ; i < timeArr.length ; i ++ ) {
