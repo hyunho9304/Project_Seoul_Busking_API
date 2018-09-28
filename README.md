@@ -84,7 +84,7 @@ GPS를 이용해 나의 현재 위치를 표시하며 내 주변의 버스킹존
 
 - 서버 환경 : Node.js , AWS S3 , AWS RDS , AWS EC2 , MySQL
 - 클라이언트 환경 : Xcode Swift Language
-- 서비 API Reference : https://documenter.getpostman.com/view/3468701/RWaRPkZR ( PDF 파일 첨부 )
+- 서비 API Reference : https://documenter.getpostman.com/view/3468701/RWaRPkZR
 
 
 
