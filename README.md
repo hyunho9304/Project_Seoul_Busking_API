@@ -2,7 +2,7 @@
 
 * User Interface 작동 영상 : https://youtu.be/Fba_vMVzUIo
 
-![](https://hyunho9304.s3.ap-northeast-2.amazonaws.com/1539941944397.png)
+![](./ProjectLogo.png)
 
 
 
